@@ -6,7 +6,7 @@ class CTickDataBase(CApiBase):
     ltype_ = ['R', '5R']
     lColName_ = ['amount', 'avgPrice', 'date', 'netChangeRatio', 'preClose', 'price', 'time', 'volume']
     dColMap_ = []
-    def getTickData(self, code_, type_ = 'R', retryCount_ = 3, pause_ = 0.001):
+    def getTickData(self, *args, **kwargs):
         """
         获取Tick数据
         Parameters
@@ -25,7 +25,7 @@ class CTickDataBase(CApiBase):
               属性:日期. 时间, 价格, 成交量, 均价, 换手率, 昨收, 成交金额
         """
         try:
-            df_ = self.checkAndRequest(code_, type_=type_,  retryCount_=retryCount_, pause_=pause_)
+            df_ = self.checkAndRequest(*args, **kwargs)
             return df_
         except Exception as e:
             print(e)
